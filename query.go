@@ -398,6 +398,11 @@ func (q *Query) canGetItem() bool {
 	return true
 }
 
+// GetQueryInput returns the aws query input used for evaluating the query with the aws interface
+func (q *Query) GetQueryInput() *dynamodb.QueryInput {
+	return q.queryInput()
+}
+
 func (q *Query) queryInput() *dynamodb.QueryInput {
 	req := &dynamodb.QueryInput{
 		TableName:                 &q.table.name,

@@ -88,6 +88,11 @@ func (p *Put) run(ctx aws.Context) (output *dynamodb.PutItemOutput, err error) {
 	return
 }
 
+// GetPutInput returns the aws put input used for evaluating the put request with the aws interface
+func (p *Put) GetPutInput() *dynamodb.PutItemInput {
+	return p.input()
+}
+
 func (p *Put) input() *dynamodb.PutItemInput {
 	input := &dynamodb.PutItemInput{
 		TableName:                 &p.table.name,
