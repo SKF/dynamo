@@ -86,6 +86,11 @@ func (s *Scan) All(out interface{}) error {
 	return itr.Err()
 }
 
+// GetScanInput returns the aws input used for evaluating the scan operation with the aws interface
+func (s *Scan) GetScanInput() *dynamodb.ScanInput {
+	return s.scanInput()
+}
+
 func (s *Scan) scanInput() *dynamodb.ScanInput {
 	input := &dynamodb.ScanInput{
 		ExclusiveStartKey:         s.startKey,

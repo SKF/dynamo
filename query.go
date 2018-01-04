@@ -454,6 +454,11 @@ func (q *Query) keyConditions() map[string]*dynamodb.Condition {
 	return conds
 }
 
+// GetGetItemInput returns the aws getitem input used for evaluating the a get query with the aws interface
+func (q *Query) GetGetItemInput() *dynamodb.GetItemInput {
+	return q.getItemInput()
+}
+
 func (q *Query) getItemInput() *dynamodb.GetItemInput {
 	req := &dynamodb.GetItemInput{
 		TableName: &q.table.name,

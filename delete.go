@@ -105,6 +105,11 @@ func (d *Delete) run(ctx aws.Context) (*dynamodb.DeleteItemOutput, error) {
 	return output, err
 }
 
+// GetDeleteInput returns the aws delete input used for evaluating the delete operation with the aws interface
+func (d *Delete) GetDeleteInput() *dynamodb.DeleteItemInput {
+	return d.deleteInput()
+}
+
 func (d *Delete) deleteInput() *dynamodb.DeleteItemInput {
 	input := &dynamodb.DeleteItemInput{
 		TableName:                 &d.table.name,
