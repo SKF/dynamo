@@ -273,6 +273,11 @@ func (u *Update) run(ctx aws.Context) (*dynamodb.UpdateItemOutput, error) {
 	return output, err
 }
 
+// GetUpdateInput returns the aws update input used for evaluating the update operation with the aws interface
+func (u *Update) GetUpdateInput() *dynamodb.UpdateItemInput {
+	return u.updateInput()
+}
+
 func (u *Update) updateInput() *dynamodb.UpdateItemInput {
 	input := &dynamodb.UpdateItemInput{
 		TableName:                 &u.table.name,
