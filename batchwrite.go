@@ -110,6 +110,11 @@ func (bw *BatchWrite) RunWithContext(ctx aws.Context) (wrote int, err error) {
 	return wrote, nil
 }
 
+// GetBatchWriteInput returns the aws input used for evaluating the batch write operation with the aws interface
+func (bw *BatchWrite) GetBatchWriteInput(ops []*dynamodb.WriteRequest) *dynamodb.BatchWriteItemInput {
+	return bw.input(ops)
+}
+
 func (bw *BatchWrite) input(ops []*dynamodb.WriteRequest) *dynamodb.BatchWriteItemInput {
 	return &dynamodb.BatchWriteItemInput{
 		RequestItems: map[string][]*dynamodb.WriteRequest{

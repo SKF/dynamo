@@ -98,6 +98,11 @@ func (bg *BatchGet) Iter() Iter {
 	return newBGIter(bg, unmarshalItem, bg.err)
 }
 
+// GetBatchGetInput returns the aws input used for evaluating the batch get operation with the aws interface
+func (bg *BatchGet) GetBatchGetInput(start int) *dynamodb.BatchGetItemInput {
+	return bg.input(start)
+}
+
 func (bg *BatchGet) input(start int) *dynamodb.BatchGetItemInput {
 	if start >= len(bg.reqs) {
 		return nil // done
